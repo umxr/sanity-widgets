@@ -4,7 +4,15 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "public/**"]
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "web#build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**"]
+    },
+    "studio#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["public/**"]
     },
     "lint": {},
     "dev": {
