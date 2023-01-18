@@ -6,14 +6,6 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
-    "web#build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**"]
-    },
-    "studio#build": {
-      "dependsOn": ["^build"],
-      "outputs": ["public/**"]
-    },
     "lint": {},
     "dev": {
       "cache": false,

@@ -20,7 +20,9 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.tsx
 var src_exports = {};
 __export(src_exports, {
-  Button: () => Button
+  Banner: () => Banner,
+  Button: () => Button,
+  Container: () => Container
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -44,7 +46,68 @@ var Button = () => {
     })
   });
 };
+
+// src/Banner.tsx
+var import_jsx_runtime2 = require("react/jsx-runtime");
+var Banner = ({
+  title,
+  subtitle,
+  description,
+  image
+}) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", {
+    className: "relative shadow-xl sm:overflow-hidden",
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", {
+        className: "absolute inset-0",
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", {
+            className: "h-full w-full object-cover",
+            src: image,
+            alt: "Banner Image"
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", {
+            className: "absolute inset-0 bg-indigo-700 mix-blend-multiply"
+          })
+        ]
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", {
+        className: "relative py-16 px-6 sm:py-24 lg:py-32 lg:px-8",
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h1", {
+            className: "text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", {
+                className: "block text-white",
+                children: title
+              }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", {
+                className: "block text-indigo-200",
+                children: subtitle
+              })
+            ]
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", {
+            className: "mx-auto mt-6 max-w-lg text-center text-xl text-indigo-200 sm:max-w-3xl",
+            children: description
+          })
+        ]
+      })
+    ]
+  });
+};
+
+// src/Container.tsx
+var import_jsx_runtime3 = require("react/jsx-runtime");
+var Container = ({ className = "", children }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", {
+    className: `mx-auto max-w-7xl sm:px-6 lg:px-8 ${className}`,
+    children
+  });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Button
+  Banner,
+  Button,
+  Container
 });
