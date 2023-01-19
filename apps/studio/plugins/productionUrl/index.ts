@@ -1,0 +1,50 @@
+import {type Slug, definePlugin} from 'sanity'
+
+import {getSecret} from 'preview'
+
+export const productionUrl = definePlugin<{
+  previewSecretId: `${string}.${string}`
+  types: string[]
+  apiVersion?: string
+}>(({previewSecretId, types: _types, apiVersion = '2022-11-17'}) => {
+  if (!previewSecretId) {
+    throw new TypeError('`previewSecretId` is required')
+  }
+  if (!previewSecretId.includes('.')) {
+    throw new TypeError(
+      '`previewSecretId` must contain a `.` to ensure it can only be queried by authenticated users'
+    )
+  }
+  if (!_types || _types.length === 0) {
+    throw new TypeError('`types` is required')
+  }
+  const types = new Set(_types)
+  return {
+    name: 'productionUrl',
+    document: {
+      productionUrl: async (prev, {document, getClient}) => {
+        const isProd = process.env.NODE_ENV === 'production'
+        const origin = isProd ? 'https://sanity-widgets-web.vercel.app' : 'http://localhost:3000'
+        const url = new URL('/api/preview', origin)
+
+        const client = getClient({apiVersion})
+        const secret = await getSecret(client, previewSecretId, true)
+        if (secret) {
+          url.searchParams.set('secret', secret)
+        }
+        const slug = (document.slug as Slug)?.current
+        if (slug) {
+          url.searchParams.set('slug', slug)
+        }
+
+        if (types.has(document._type)) {
+          url.searchParams.set('type', document._type)
+          console.log('Open preview URL', url.toString())
+          return url.toString()
+        }
+
+        return prev
+      },
+    },
+  }
+})

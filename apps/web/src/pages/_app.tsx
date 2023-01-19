@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main>
+    <main className="w-screen h-screen flex flex-col">
       <Component {...pageProps} />
     </main>
   );
