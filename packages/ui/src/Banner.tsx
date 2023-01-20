@@ -1,4 +1,15 @@
-import { Container } from "./Container";
+import { groq } from "next-sanity";
+
+export const bannerQuery = groq`
+  _type == "banner" => {
+    _id,
+    _type,
+    title,
+    subtitle,
+    description,
+    "image": image.asset -> url,
+  }
+`;
 
 export type BannerProps = {
   _id: string;

@@ -3,11 +3,18 @@ import "../styles/globals.css";
 import "ui/styles.css";
 
 import type { AppProps } from "next/app";
+import { PreviewBanner } from "../components/PreviewBanner";
+import { Metadata } from "../components/Metadata";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const preview = pageProps?.preview ?? false;
   return (
-    <main className="w-screen h-screen flex flex-col">
-      <Component {...pageProps} />
-    </main>
+    <div>
+      <Metadata />
+      <PreviewBanner enabled={preview} />
+      <main className="w-screen h-screen flex flex-col">
+        <Component {...pageProps} />
+      </main>
+    </div>
   );
 }

@@ -58,7 +58,7 @@ export const SanityContentPortal = ({
         </div>
         {openPortal && (
           <motion.div
-            className="h-[500px] w-[450px] bg-red-500 relative z-30 p-6"
+            className="h-[500px] w-[450px] bg-red-500 absolute z-30 p-6"
             drag
             dragConstraints={constraintsRef}
           >
