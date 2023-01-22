@@ -5,8 +5,6 @@ import { HomePage, homePageQuery } from "../components/HomePage";
 import { PreviewSuspense } from "next-sanity/preview";
 import { PreviewHomePage } from "../components/PreviewHomePage";
 
-type PageMode = "editor" | "default";
-
 export type HomePageProps = {
   preview: boolean;
   blocks: BannerProps[];
